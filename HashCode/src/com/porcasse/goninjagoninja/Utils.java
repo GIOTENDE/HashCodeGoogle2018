@@ -23,9 +23,9 @@ public class Utils {
 		return (A.getX() - B.getX()) + (A.getY() - B.getY());
 	}
 	
-	public  static void creerFichierSortie(Map<Vehicule, List<Ride>> listeRideParVehicule) {
+	public  static void creerFichierSortie(Map<Integer, List<Ride>> listeRideParVehicule) {
 		List<String> listToReturn = new ArrayList<>();
-		for(Map.Entry<Vehicule, List<Ride>> entry : listeRideParVehicule.entrySet()) {
+		for(Map.Entry<Integer, List<Ride>> entry : listeRideParVehicule.entrySet()) {
 			String line = "";
 			line += entry.getKey();
 			for(Ride ride : entry.getValue()) {
