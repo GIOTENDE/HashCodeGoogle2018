@@ -7,7 +7,7 @@ public class Utils {
 	 * @param A
 	 * @param B
 	 */
-	public Integer calculerDistanceVecteur(Coordonnees A, Coordonnees B){
+	public static Integer calculerDistanceVecteur(Coordonnees A, Coordonnees B){
 		return (A.getX() - B.getX()) + (A.getY() - B.getY());
 	}
 	
