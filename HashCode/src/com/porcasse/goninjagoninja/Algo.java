@@ -26,9 +26,9 @@ public class Algo {
 		Integer nbTrajetAOptimiser = nbRide - nbVehicules;
 		
 		if(nbRide > nbVehicules){
-		for(int i=0; i < rides.size(); i++){
-			comparerRideToList(rides.get(i),rides,i,nbTrajetAOptimiser);	
-		}
+			for(int i=0; i < rides.size(); i++){
+				comparerRideToList(rides.get(i),rides,i,nbTrajetAOptimiser);	
+			}
 		}
 	}
 
