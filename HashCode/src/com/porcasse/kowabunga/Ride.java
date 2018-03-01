@@ -13,6 +13,13 @@ public class Ride {
 	public void setLocked(Boolean locked) {
 		this.locked = locked;
 	}
+	private int id;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public Coordonnees getStart() {
 		return start;
 	}
