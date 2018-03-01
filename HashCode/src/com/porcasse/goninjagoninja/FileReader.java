@@ -17,7 +17,6 @@ public class FileReader {
 			scan = new Scanner(fic);
 
 		//3 rows, 4 columns, 2 vehicles, 3 rides, 2 bonus and 10 steps
-		scan.nextInt();
 		Context ctx = new Context();
 		
 		ctx.setRows(scan.nextInt());
