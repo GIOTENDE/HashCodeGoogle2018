@@ -13,7 +13,7 @@ public class Algo {
 	
 	private List<PairRide> ridesLesPlusOptis;
 	
-	private Integer maximumDistanceOpti = Integer.MAX_VALUE; 
+	private Integer maximumDistanceOpti = null; 
 	
 	/**
 	 * 
@@ -25,16 +25,14 @@ public class Algo {
 		Integer nbRide = rides.size();
 		Integer nbTrajetAOptimiser = nbRide - nbVehicules;
 		
-		Integer index = 0;
 		if(nbRide > nbVehicules){
-//			if(ridesLesPlusOptis.size() < nbTrajetAOptimiser){
-				index += comparerRideToList(rides.get(index),rides,index,nbTrajetAOptimiser);
-//			}
+		for(int i=0; i < rides.size(); i++){
+			comparerRideToList(rides.get(i),rides,i,nbTrajetAOptimiser);	
+		}
 		}
 	}
 
 	private Integer comparerRideToList(Ride currentRide,List<Ride> rides, Integer index, Integer nbTrajetsAOptimiser) {
-		Integer nbRidesOpti = 0;
 		Integer nbDansListeOptis = 0;
 		
 		for(int i = 0; i<rides.size();i++){
@@ -42,15 +40,18 @@ public class Algo {
 				Integer distance = Utils.calculerDistanceVecteur(currentRide.getEnd(), rides.get(i).getStart());
 				if(ridesLesPlusOptis.size() < nbTrajetsAOptimiser){
 					ridesLesPlusOptis.add(new PairRide(currentRide, rides.get(i), distance));
-					if(maximumDistanceOpti < distance){
+					nbDansListeOptis++;
+					if(maximumDistanceOpti == null || maximumDistanceOpti < distance){
 						maximumDistanceOpti = distance;
 					}
 				}
-				else if(distance < maximumDistanceOpti){
+				else if(maximumDistanceOpti < distance){
 					maximumDistanceOpti = distance;
+					ridesLesPlusOptis.add(new PairRide(currentRide, rides.get(i), distance));
+					nbDansListeOptis++;
 				}
 			}
 		}
-		return nbRidesOpti;
+		return nbDansListeOptis;
 	}
 }
