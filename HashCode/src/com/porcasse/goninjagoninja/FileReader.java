@@ -50,6 +50,7 @@ public class FileReader {
 			ctx.getRides().add(ride);
 			scan.nextLine();
 		}
+		scan.close();
 		
 		
 	}
