@@ -1,9 +1,11 @@
 package com.porcasse.goninjagoninja;
 
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,18 +24,22 @@ public class Utils {
 	}
 	
 	public  static void creerFichierSortie(Map<Vehicule, List<Ride>> listeRideParVehicule) {
-		List<String> listToReturn = new List<String>();
-		for(Map.Entry<String, List<Ride>> entry : listeRideParVehicule.entrySet()) {
+		List<String> listToReturn = new ArrayList<>();
+		for(Map.Entry<Vehicule, List<Ride>> entry : listeRideParVehicule.entrySet()) {
 			String line = "";
 			line += entry.getKey();
-			for(Map.Entry<String, String> rides : entry.getValue()) {
+			for(Ride ride : entry.getValue()) {
 				line += " ";
-				line += rides.getValue().toString();
+				line += String.valueOf(ride.getId());
 			}
 			listToReturn.add(line);
 		}
 		Path file = Paths.get("output.txt");
-		Files.write(file, listToReturn, Charset.forName("UTF-8"));
+		try {
+			Files.write(file, listToReturn, Charset.forName("UTF-8"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

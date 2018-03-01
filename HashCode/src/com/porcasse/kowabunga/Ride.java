@@ -5,6 +5,13 @@ public class Ride {
 	private Coordonnees end;
 	private int startTime;
 	private int finishTime;
+	private int id;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public Coordonnees getStart() {
 		return start;
 	}
