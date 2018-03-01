@@ -1,5 +1,7 @@
 package com.porcasse.goninjagoninja;
 
+import com.porcasse.kowabunga.Coordonnees;
+
 public class Utils {
 	
 	/**

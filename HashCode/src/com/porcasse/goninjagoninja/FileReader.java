@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.porcasse.kowabunga.Context;
+import com.porcasse.kowabunga.Coordonnees;
 import com.porcasse.kowabunga.Ride;
 
 public class FileReader {
