@@ -25,14 +25,11 @@ public class Algo {
 		Integer nbRide = rides.size();
 		Integer nbTrajetAOptimiser = nbRide - nbVehicules;
 		
-		if(nbRide > nbVehicules){
+		if(nbRide > nbVehicules && nbRide < nbVehicules*2+1){
 			for(int i=0; i < rides.size(); i++){
 				comparerRideToList(rides.get(i),rides,i,nbTrajetAOptimiser);	
 			}
 		}
-		
-		
-		
 	}
 
 	private Integer comparerRideToList(Ride currentRide,List<Ride> rides, Integer index, Integer nbTrajetsAOptimiser) {
@@ -42,8 +39,8 @@ public class Algo {
 			if(i != index){
 				Integer distance = Utils.calculerDistanceVecteur(currentRide.getEnd(), rides.get(i).getStart());
 				if(ridesLesPlusOptis.size() < nbTrajetsAOptimiser){
-//					currentRide.setLocked(Boolean.TRUE);
-//					rides.get(i).setLocked(Boolean.TRUE);
+					currentRide.setLocked(Boolean.TRUE);
+					rides.get(i).setLocked(Boolean.TRUE);
 					ridesLesPlusOptis.add(new PairRide(currentRide, rides.get(i), distance));
 					nbDansListeOptis++;
 					if(maximumDistanceOpti == null || maximumDistanceOpti < distance){
@@ -51,23 +48,25 @@ public class Algo {
 					}
 				}
 				else if(maximumDistanceOpti < distance){
-					maximumDistanceOpti = distance;
-//					currentRide.setLocked(Boolean.TRUE);
-//					rides.get(i).setLocked(Boolean.TRUE);
-					ridesLesPlusOptis.add(new PairRide(currentRide, rides.get(i), distance));
-					nbDansListeOptis++;
+					if(currentRide.getLocked() != Boolean.TRUE && rides.get(i).getLocked() != Boolean.TRUE){
+						currentRide.setLocked(Boolean.TRUE);
+						rides.get(i).setLocked(Boolean.TRUE);
+						removeMaxDistance();
+						maximumDistanceOpti = distance;
+						ridesLesPlusOptis.add(new PairRide(currentRide, rides.get(i), distance));
+						nbDansListeOptis++;
+					}
 				}
 			}
 		}
 		return nbDansListeOptis;
 	}
 	
-	List<PairRide> removeDistancePair(Integer distance){
+	void removeMaxDistance(){
 		for(PairRide currentRide : ridesLesPlusOptis){
-			if(currentRide.getDelai() == distance){
-//				ridesLesPlusOptis.remove();
+			if(currentRide.getDelai() == maximumDistanceOpti){
+				ridesLesPlusOptis.remove(currentRide);
 			}
 		}
-		return null;
 	}
 }

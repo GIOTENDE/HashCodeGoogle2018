@@ -5,6 +5,14 @@ public class Ride {
 	private Coordonnees end;
 	private int startTime;
 	private int finishTime;
+	private Boolean locked;
+	
+	public Boolean getLocked() {
+		return locked;
+	}
+	public void setLocked(Boolean locked) {
+		this.locked = locked;
+	}
 	public Coordonnees getStart() {
 		return start;
 	}
@@ -28,6 +36,10 @@ public class Ride {
 	}
 	public void setFinishTime(int finishTime) {
 		this.finishTime = finishTime;
+	}
+	
+	public void releaseLock(){
+		this.locked = false;
 	}
 
 }
