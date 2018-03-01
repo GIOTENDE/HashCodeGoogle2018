@@ -13,7 +13,7 @@ public class Algo {
 	
 	private List<PairRide> ridesLesPlusOptis;
 	
-	private Integer maximumDistanceOpti = 0; 
+	private Integer maximumDistanceOpti = Integer.MAX_VALUE; 
 	
 	/**
 	 * 
@@ -36,11 +36,18 @@ public class Algo {
 	private Integer comparerRideToList(Ride currentRide,List<Ride> rides, Integer index, Integer nbTrajetsAOptimiser) {
 		Integer nbRidesOpti = 0;
 		Integer nbDansListeOptis = 0;
+		
 		for(int i = 0; i<rides.size();i++){
 			if(i != index){
 				Integer distance = Utils.calculerDistanceVecteur(currentRide.getEnd(), rides.get(i).getStart());
-				if(distance > maximumDistanceOpti){
-					
+				if(ridesLesPlusOptis.size() < nbTrajetsAOptimiser){
+					ridesLesPlusOptis.add(new PairRide(currentRide, rides.get(i), distance));
+					if(maximumDistanceOpti < distance){
+						maximumDistanceOpti = distance;
+					}
+				}
+				else if(distance < maximumDistanceOpti){
+					maximumDistanceOpti = distance;
 				}
 			}
 		}
